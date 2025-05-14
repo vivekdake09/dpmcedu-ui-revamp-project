@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Lightbulb, Wrench, Desktop, BookOpen, Briefcase, HeartPulse } from 'lucide-react';
+import { Lightbulb, Wrench, Computer, BookOpen, Briefcase, HeartPulse } from 'lucide-react';
 
 const FacilitiesSection: React.FC = () => {
   const facilities = [
@@ -15,7 +15,7 @@ const FacilitiesSection: React.FC = () => {
       id: 2,
       title: 'Computer Lab',
       description: 'State-of-the-art computer lab with latest software and high-speed internet connection.',
-      icon: <Desktop className="h-10 w-10 text-dpmc-blue" />
+      icon: <Computer className="h-10 w-10 text-dpmc-blue" />
     },
     {
       id: 3,
