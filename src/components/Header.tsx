@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,38 +26,38 @@ const Header: React.FC = () => {
   const menuItems = [
     { 
       title: 'Home', 
-      link: 'index.html' 
+      link: '/' 
     },
     {
       title: 'About Us',
       link: '#',
       submenu: [
-        { title: 'About DPMC', link: 'about_dpmc.html' },
-        { title: 'Vision & Mission', link: 'vision_mission.html' },
-        { title: 'Chairman Message', link: 'chairman_message.html' },
-        { title: 'Principal Message', link: 'principal_message.html' }
+        { title: 'About DPMC', link: '/about-dpmc' },
+        { title: 'Vision & Mission', link: '/vision-mission' },
+        { title: 'Chairman Message', link: '/chairman-message' },
+        { title: 'Principal Message', link: '/principal-message' }
       ]
     },
     {
       title: 'Courses',
       link: '#',
       submenu: [
-        { title: 'Engineering Trades', link: 'engineering_trades.html' },
-        { title: 'Non-Engineering Trades', link: 'non_engineering_trades.html' }
+        { title: 'Engineering Trades', link: '/engineering-trades' },
+        { title: 'Non-Engineering Trades', link: '/non-engineering-trades' }
       ]
     },
     {
       title: 'Admission',
       link: '#',
       submenu: [
-        { title: 'Admission Process', link: 'admission_process.html' },
-        { title: 'Fee Structure', link: 'fees_structure.html' },
-        { title: 'Apply Online', link: 'apply_online.html' }
+        { title: 'Admission Process', link: '/admission-process' },
+        { title: 'Fee Structure', link: '/fee-structure' },
+        { title: 'Apply Online', link: '/apply-online' }
       ]
     },
-    { title: 'Facilities', link: 'facilities.html' },
-    { title: 'Gallery', link: 'gallery.html' },
-    { title: 'Contact Us', link: 'contact_us.html' }
+    { title: 'Facilities', link: '/facilities' },
+    { title: 'Gallery', link: '/gallery' },
+    { title: 'Contact Us', link: '/contact-us' }
   ];
 
   const toggleDropdown = (title: string) => {
@@ -76,13 +77,13 @@ const Header: React.FC = () => {
         {/* Top header */}
         <div className="flex justify-between items-center mb-2">
           <div className="flex items-center">
-            <a href="index.html" className="flex items-center">
+            <Link to="/" className="flex items-center">
               <img src="https://www.dpmcedu.com/images/logo.png" alt="DPMC Logo" className="h-12 md:h-16" />
               <div className="ml-2 hidden md:block">
                 <h1 className="font-bold text-dpmc-blue text-lg md:text-xl">DPMC Private ITI</h1>
                 <p className="text-xs text-gray-600">Excellence in Technical Education</p>
               </div>
-            </a>
+            </Link>
           </div>
 
           <div className="hidden md:flex items-center gap-4">
@@ -131,33 +132,34 @@ const Header: React.FC = () => {
                       openDropdown === item.title ? "opacity-100 visible" : "opacity-0 invisible"
                     )}>
                       {item.submenu.map((subItem) => (
-                        <a
+                        <Link
                           key={subItem.title}
-                          href={subItem.link}
+                          to={subItem.link}
                           className="block px-4 py-2 text-sm hover:bg-dpmc-gray"
+                          onClick={() => setOpenDropdown(null)}
                         >
                           {subItem.title}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
                 ) : (
-                  <a
-                    href={item.link}
+                  <Link
+                    to={item.link}
                     className="block px-3 py-2 hover:bg-dpmc-blue hover:text-white rounded-md"
                   >
                     {item.title}
-                  </a>
+                  </Link>
                 )}
               </li>
             ))}
             <li>
-              <a 
-                href="apply_online.html" 
+              <Link 
+                to="/apply-online" 
                 className="bg-dpmc-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors duration-200"
               >
                 Apply Now
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
@@ -188,34 +190,37 @@ const Header: React.FC = () => {
                       {openDropdown === item.title && (
                         <div className="ml-4 mt-1 space-y-1 border-l-2 border-dpmc-blue pl-2">
                           {item.submenu.map((subItem) => (
-                            <a
+                            <Link
                               key={subItem.title}
-                              href={subItem.link}
+                              to={subItem.link}
                               className="block px-3 py-2 text-sm hover:bg-gray-100 rounded-md"
+                              onClick={() => setIsMenuOpen(false)}
                             >
                               {subItem.title}
-                            </a>
+                            </Link>
                           ))}
                         </div>
                       )}
                     </div>
                   ) : (
-                    <a
-                      href={item.link}
+                    <Link
+                      to={item.link}
                       className="block px-3 py-2 hover:bg-gray-100 rounded-md"
+                      onClick={() => setIsMenuOpen(false)}
                     >
                       {item.title}
-                    </a>
+                    </Link>
                   )}
                 </li>
               ))}
               <li>
-                <a 
-                  href="apply_online.html" 
+                <Link 
+                  to="/apply-online" 
                   className="block w-full text-center bg-dpmc-red text-white px-3 py-2 rounded-md hover:bg-red-700 transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   Apply Now
-                </a>
+                </Link>
               </li>
             </ul>
             <div className="mt-4 flex flex-col space-y-2 border-t border-gray-200 pt-2">
